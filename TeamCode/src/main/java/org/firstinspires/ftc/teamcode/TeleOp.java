@@ -2,13 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.TouchSensor;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.SensorDigitalTouch;
 
 @Disabled
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
@@ -40,6 +38,7 @@ public class TeleOp extends LinearOpMode {
         DcMotor armMotor = hardwareMap.dcMotor.get("arm");
         DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
+        AnalogInput armSensor = hardwareMap.analogInput.get("armSensor");
 
         double flEncoder = frontLeftMotor.getCurrentPosition();
         double frEncoder = frontRightMotor.getCurrentPosition();
@@ -100,10 +99,10 @@ public class TeleOp extends LinearOpMode {
                 servo2.setPosition(0.25);
             }
             if(gamepad1.a){
-                elevatorMotor.setPower(1.0);
+                moveElevator(1.0, elevatorMotor, elevatorIn, elevatorOut);
             }
             if(gamepad1.b){
-                elevatorMotor.setPower(-1.0);
+                moveElevator(-1.0, elevatorMotor, elevatorIn, elevatorOut);
             }
 
 
@@ -112,5 +111,29 @@ public class TeleOp extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
         }
+    }
+    public void moveArm(double power, DcMotor armMotor, AnalogInput armSensor){
+        if(power >= 0 && armSensor.getVoltage() < 0.75){
+            armMotor.setPower(power);
+        }
+        if(power >= 0 && armSensor.getVoltage() > 2.55){
+            armMotor.setPower(power);
+        }
+        else{
+            armMotor.setPower(0.0);
+        }
+
+    }
+    public void moveElevator(double power, DcMotor elevatorMotor, DigitalChannel elevatorIn, DigitalChannel elevatorOut){
+        if(elevatorIn.getState() && power >= 0){
+            elevatorMotor.setPower(power);
+        }
+        if(elevatorOut.getState() && power >= 0){
+            elevatorMotor.setPower(power);
+        }
+        else{
+            elevatorMotor.setPower(0.0);
+        }
+
     }
 }
