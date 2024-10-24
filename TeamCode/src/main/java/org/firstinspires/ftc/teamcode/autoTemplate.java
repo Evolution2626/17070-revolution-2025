@@ -6,14 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-
-
 @Autonomous
 public class autoTemplate extends LinearOpMode {
-
-
-
-
 
     DcMotor frontLeftMotor;
     DcMotor backLeftMotor;
@@ -26,7 +20,6 @@ public class autoTemplate extends LinearOpMode {
         backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         backRightMotor = hardwareMap.dcMotor.get("backRight");
-
 
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -43,31 +36,30 @@ public class autoTemplate extends LinearOpMode {
 
         waitForStart();
 
-        while (opModeIsActive()){
-            double targetFL = RunWithEncoder.calculateTicks(60.0);
-            double targetFR = RunWithEncoder.calculateTicks(60.0);
-            double targetBL = RunWithEncoder.calculateTicks(60.0);
-            double targetBR = RunWithEncoder.calculateTicks(60.0);
+        while (opModeIsActive()) {
+            double targetFL = DrivetrainFunction.calculateTicks(60.0);
+            double targetFR = DrivetrainFunction.calculateTicks(60.0);
+            double targetBL = DrivetrainFunction.calculateTicks(60.0);
+            double targetBR = DrivetrainFunction.calculateTicks(60.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
 
         }
     }
-        public void encoderDrive(double targetFL, double targetFR, double targetBL, double targetBR) {
-            while(RunWithEncoder.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()) != 0
-                    && RunWithEncoder.calculatePower(targetFR, frontRightMotor.getCurrentPosition()) != 0
-                    && RunWithEncoder.calculatePower(targetBL, backLeftMotor.getCurrentPosition()) != 0
-                    && RunWithEncoder.calculatePower(targetBR, backRightMotor.getCurrentPosition()) != 0){
-                frontLeftMotor.setPower(RunWithEncoder.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()));
-                frontRightMotor.setPower(RunWithEncoder.calculatePower(targetFR, frontRightMotor.getCurrentPosition()));
-                backLeftMotor.setPower(RunWithEncoder.calculatePower(targetBL, backLeftMotor.getCurrentPosition()));
-                backRightMotor.setPower(RunWithEncoder.calculatePower(targetBR, backRightMotor.getCurrentPosition()));
-            }
+
+    public void encoderDrive(double targetFL, double targetFR, double targetBL, double targetBR) {
+        while (DrivetrainFunction.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()) != 0
+                && DrivetrainFunction.calculatePower(targetFR, frontRightMotor.getCurrentPosition()) != 0
+                && DrivetrainFunction.calculatePower(targetBL, backLeftMotor.getCurrentPosition()) != 0
+                && DrivetrainFunction.calculatePower(targetBR, backRightMotor.getCurrentPosition()) != 0) {
+            frontLeftMotor.setPower(DrivetrainFunction.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()));
+            frontRightMotor.setPower(DrivetrainFunction.calculatePower(targetFR, frontRightMotor.getCurrentPosition()));
+            backLeftMotor.setPower(DrivetrainFunction.calculatePower(targetBL, backLeftMotor.getCurrentPosition()));
+            backRightMotor.setPower(DrivetrainFunction.calculatePower(targetBR, backRightMotor.getCurrentPosition()));
+        }
 
 
     }
 
 
-
-
-    }
+}
 
