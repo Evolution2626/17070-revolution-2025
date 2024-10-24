@@ -18,13 +18,18 @@ class DrivetrainFunction {
 
         @JvmStatic
         fun calculatePower(targetPos: Double, currentPos: Double): Double {
-            return if (abs(targetPos - currentPos) > 50) {
+
+            return if ((targetPos - currentPos) > 50) {
                 if (abs(currentPos - targetPos) < 100) 0.25
                 else if (abs(currentPos - targetPos) < 500) 0.50
                 else if (abs(currentPos - targetPos) < 1000) 0.75
                 else 1.0
+            } else if ((targetPos - currentPos) < -50) {
+                if (abs(currentPos - targetPos) < 100) -0.25
+                else if (abs(currentPos - targetPos) < 500) -0.50
+                else if (abs(currentPos - targetPos) < 1000) -0.75
+                else -1.0
             } else 0.0
-
         }
     }
 }

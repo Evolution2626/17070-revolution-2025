@@ -18,20 +18,25 @@ public class TeleOp extends LinearOpMode {
     double elevatorOutPos;
 
 
-    Servo servo1;
-    Servo servo2;
+    Servo servoPinceR;
+    Servo servoPinceL;
+
+    Servo servoBucket;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        servo1 = hardwareMap.get(Servo.class, "pince1");
-        servo2 = hardwareMap.get(Servo.class, "pince2");
+        servoPinceR = hardwareMap.get(Servo.class, "servoPinceR");
+        servoPinceL = hardwareMap.get(Servo.class, "servoPinceL");
+        servoBucket = hardwareMap.get(Servo.class, "servoBucket");
+
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
         DcMotor elevatorMotor = hardwareMap.dcMotor.get("elevator");
         DcMotor armMotor = hardwareMap.dcMotor.get("arm");
+
         DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
         AnalogInput armSensor = hardwareMap.analogInput.get("armSensor");
@@ -76,21 +81,20 @@ public class TeleOp extends LinearOpMode {
             double backLeftPower = (y - x + rx) / denominator;
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
-            if (gamepad1.x) {
-                servo1.setPosition(0.25);
-                servo2.setPosition(0.75);
+            if (gamepad2.x) {
+                servoPinceR.setPosition(0.25);
+                servoPinceL.setPosition(0.75);
             }
-            if (gamepad1.y) {
-                servo1.setPosition(0.75);
-                servo2.setPosition(0.25);
+            if (gamepad2.y) {
+                servoPinceR.setPosition(0.75);
+                servoPinceL.setPosition(0.25);
             }
-            if (gamepad1.a) elevatorMotor.setPower(ElevatorFunction.moveElevator(1.0, elevatorIn, elevatorOut));
-
-            if (gamepad1.b) elevatorMotor.setPower(ElevatorFunction.moveElevator(-1.0, elevatorIn, elevatorOut));
-
-            if (gamepad1.left_bumper) armMotor.setPower(ArmFunction.moveArm(1.0, armSensor));
-
-            if (gamepad1.right_bumper) armMotor.setPower(ArmFunction.moveArm(-1.0, armSensor));
+            if (gamepad2.a) elevatorMotor.setPower(ElevatorFunction.moveElevator(1.0, elevatorIn, elevatorOut));
+            if (gamepad2.b) elevatorMotor.setPower(ElevatorFunction.moveElevator(-1.0, elevatorIn, elevatorOut));
+            if (gamepad2.left_bumper) armMotor.setPower(ArmFunction.moveArm(1.0, armSensor));
+            if (gamepad2.right_bumper) armMotor.setPower(ArmFunction.moveArm(-1.0, armSensor));
+            if (gamepad2.right_trigger > 0.5) servoBucket.setPosition(0.25);
+            else servoBucket.setPosition(0.75);
 
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);
