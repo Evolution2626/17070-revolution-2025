@@ -45,38 +45,17 @@ public class autoTest2 extends LinearOpMode {
 
         waitForStart();
 
-        encoderDrive(30.0, 30.0, 30.0, 30.0);
-        encoderDrive(30.0, 30.0, 30.0, 30.0);
-        encoderDrive(30.0, -30.0, 30.0, -30.0);
-    }
-    public void encoderDrive(
-            double flCm, double frCm, double blCm, double brCm) {
-        double newflTarget = 0.0;
-        double newfrTarget = 0.0;
-        double newblTarget = 0.0;
-        double newbrTarget = 0.0;
-
-
-        if (opModeIsActive()) {
-
-            newflTarget = frontLeftMotor.getCurrentPosition() + (flCm * COUNTS_PER_Cm);
-            newfrTarget = frontRightMotor.getCurrentPosition() + (frCm * COUNTS_PER_Cm);
-            newblTarget = backLeftMotor.getCurrentPosition() + (blCm * COUNTS_PER_Cm);
-            newbrTarget = backRightMotor.getCurrentPosition() + (brCm * COUNTS_PER_Cm);
-
-            frontLeftMotor.setTargetPosition((int) newflTarget);
-            frontRightMotor.setTargetPosition((int)newfrTarget);
-            backLeftMotor.setTargetPosition((int)newblTarget);
-            backRightMotor.setTargetPosition((int)newbrTarget);
-
-
-            while (opModeIsActive() &&
-
-                    (frontLeftMotor.isBusy() || frontRightMotor.isBusy() || backLeftMotor.isBusy() || backRightMotor.isBusy())){
-            }
-
+        while (opModeIsActive()){
 
         }
 
+
     }
-}
+   public void runToPos(double xCm, double yCm, double rDeg){
+
+    }
+
+
+
+    }
+
