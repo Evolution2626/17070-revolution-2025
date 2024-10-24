@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5afca5b3-923d-46d7-8e60-4c9a91f61658" name="Changes" comment="pls work">
+    <list default="true" id="5afca5b3-923d-46d7-8e60-4c9a91f61658" name="Changes" comment="code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TeleOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TeleOp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -57,7 +57,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Evolution2626/17070-revolution-2025.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/Thierry-Lachance/17070-revolution-2025.git&quot;,
     &quot;accountId&quot;: &quot;142d07db-c560-4dca-9ea5-5ea9b1b05c52&quot;
   }
 }</component>
@@ -80,8 +80,13 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/thier/OneDrive/Documents/17070-revolution-2025&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/thier/cache-dumb-1&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\thier\\cache-dumb-1&quot;
+    ]
   }
 }</component>
   <component name="RunManager">
@@ -169,11 +174,28 @@
       <option name="project" value="LOCAL" />
       <updated>1728693723607</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="code">
+      <option name="closed" value="true" />
+      <created>1729773952043</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729773952043</updated>
+    </task>
+    <task id="LOCAL-00003" summary="code">
+      <option name="closed" value="true" />
+      <created>1729781289877</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729781289877</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pls work" />
-    <option name="LAST_COMMIT_MESSAGE" value="pls work" />
+    <MESSAGE value="code" />
+    <option name="LAST_COMMIT_MESSAGE" value="code" />
   </component>
 </project>

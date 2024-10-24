@@ -12,11 +12,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends LinearOpMode {
 
-    double flEncoderPos;
-    double frEncoderPos;
-    double blEncoderPos;
-    double brEncoderPos;
-
     double armOutPos;
     double armInPos;
     double elevatorInPos;
@@ -25,6 +20,7 @@ public class TeleOp extends LinearOpMode {
 
     Servo servo1;
     Servo servo2;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -39,11 +35,6 @@ public class TeleOp extends LinearOpMode {
         DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
         AnalogInput armSensor = hardwareMap.analogInput.get("armSensor");
-
-        double flEncoder = frontLeftMotor.getCurrentPosition();
-        double frEncoder = frontRightMotor.getCurrentPosition();
-        double blEncoder = backLeftMotor.getCurrentPosition();
-        double brEncoder = backRightMotor.getCurrentPosition();
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -65,11 +56,6 @@ public class TeleOp extends LinearOpMode {
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        flEncoderPos = flEncoder;
-        frEncoderPos = frEncoder;
-        blEncoderPos = blEncoder;
-        brEncoderPos = brEncoder;
-
         elevatorInPos = elevatorMotor.getCurrentPosition();
         armInPos = armMotor.getCurrentPosition();
 
@@ -90,21 +76,21 @@ public class TeleOp extends LinearOpMode {
             double backLeftPower = (y - x + rx) / denominator;
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
-            if(gamepad1.x){
+            if (gamepad1.x) {
                 servo1.setPosition(0.25);
                 servo2.setPosition(0.75);
             }
-            if(gamepad1.y){
+            if (gamepad1.y) {
                 servo1.setPosition(0.75);
                 servo2.setPosition(0.25);
             }
-            if(gamepad1.a){
-                moveElevator(1.0, elevatorMotor, elevatorIn, elevatorOut);
-            }
-            if(gamepad1.b){
-                moveElevator(-1.0, elevatorMotor, elevatorIn, elevatorOut);
-            }
+            if (gamepad1.a) elevatorMotor.setPower(ElevatorFunction.moveElevator(1.0, elevatorIn, elevatorOut));
 
+            if (gamepad1.b) elevatorMotor.setPower(ElevatorFunction.moveElevator(-1.0, elevatorIn, elevatorOut));
+
+            if (gamepad1.left_bumper) armMotor.setPower(ArmFunction.moveArm(1.0, armSensor));
+
+            if (gamepad1.right_bumper) armMotor.setPower(ArmFunction.moveArm(-1.0, armSensor));
 
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);
@@ -112,28 +98,6 @@ public class TeleOp extends LinearOpMode {
             backRightMotor.setPower(backRightPower);
         }
     }
-    public void moveArm(double power, DcMotor armMotor, AnalogInput armSensor){
-        if(power >= 0 && armSensor.getVoltage() < 0.75){
-            armMotor.setPower(power);
-        }
-        if(power >= 0 && armSensor.getVoltage() > 2.55){
-            armMotor.setPower(power);
-        }
-        else{
-            armMotor.setPower(0.0);
-        }
 
-    }
-    public void moveElevator(double power, DcMotor elevatorMotor, DigitalChannel elevatorIn, DigitalChannel elevatorOut){
-        if(elevatorIn.getState() && power >= 0){
-            elevatorMotor.setPower(power);
-        }
-        if(elevatorOut.getState() && power >= 0){
-            elevatorMotor.setPower(power);
-        }
-        else{
-            elevatorMotor.setPower(0.0);
-        }
 
-    }
 }
