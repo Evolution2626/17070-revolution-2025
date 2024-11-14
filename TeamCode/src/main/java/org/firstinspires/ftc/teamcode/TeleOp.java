@@ -1,14 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.Servo;
 
-@Disabled
+
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends LinearOpMode {
 
@@ -18,28 +16,30 @@ public class TeleOp extends LinearOpMode {
     double elevatorOutPos;
 
 
-    Servo servoPinceR;
-    Servo servoPinceL;
+    CRServo servoPinceR;
+    CRServo servoPinceL;
 
-    Servo servoBucket;
+    CRServo servoBucket;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        servoPinceR = hardwareMap.get(Servo.class, "servoPinceR");
-        servoPinceL = hardwareMap.get(Servo.class, "servoPinceL");
-        servoBucket = hardwareMap.get(Servo.class, "servoBucket");
+        servoPinceR = hardwareMap.get(CRServo.class, "servoPinceR");
+        servoPinceL = hardwareMap.get(CRServo.class, "servoPinceL");
+        servoBucket = hardwareMap.get(CRServo.class, "servoBucket");
 
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
-        DcMotor elevatorMotor = hardwareMap.dcMotor.get("elevator");
         DcMotor armMotor = hardwareMap.dcMotor.get("arm");
+        DcMotor elevatorMotor = hardwareMap.dcMotor.get("elevator");
 
-        DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
+
+       DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
-        AnalogInput armSensor = hardwareMap.analogInput.get("armSensor");
+        //AnalogInput armSensor = hardwareMap.analogInput.get("armSensor");
+
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -52,28 +52,22 @@ public class TeleOp extends LinearOpMode {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        elevatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         elevatorIn.setMode(DigitalChannel.Mode.INPUT);
         elevatorOut.setMode(DigitalChannel.Mode.INPUT);
 
-        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        elevatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        elevatorInPos = elevatorMotor.getCurrentPosition();
-        armInPos = armMotor.getCurrentPosition();
-
-        elevatorOutPos = elevatorInPos + 0;// TODO add the magic maximum value
-        armOutPos = armInPos + 0;// TODO same thing here
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y;
-            double x = gamepad1.left_stick_x * 1.1;
+            double y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
+            double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
@@ -81,20 +75,26 @@ public class TeleOp extends LinearOpMode {
             double backLeftPower = (y - x + rx) / denominator;
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
-            if (gamepad2.x) {
-                servoPinceR.setPosition(0.25);
-                servoPinceL.setPosition(0.75);
+
+            if(gamepad2.b) {
+                servoPinceR.setPower(-1);
+                servoPinceL.setPower(1);
             }
-            if (gamepad2.y) {
-                servoPinceR.setPosition(0.75);
-                servoPinceL.setPosition(0.25);
+            if(gamepad2.x) {
+                servoPinceR.setPower(1);
+                servoPinceL.setPower(-1);
             }
-            if (gamepad2.a) elevatorMotor.setPower(ElevatorFunction.moveElevator(1.0, elevatorIn, elevatorOut));
-            if (gamepad2.b) elevatorMotor.setPower(ElevatorFunction.moveElevator(-1.0, elevatorIn, elevatorOut));
-            if (gamepad2.left_bumper) armMotor.setPower(ArmFunction.moveArm(1.0, armSensor));
-            if (gamepad2.right_bumper) armMotor.setPower(ArmFunction.moveArm(-1.0, armSensor));
-            if (gamepad2.right_trigger > 0.5) servoBucket.setPosition(0.25);
-            else servoBucket.setPosition(0.75);
+            else{
+                servoPinceR.setPower(0);
+                servoPinceL.setPower(0);
+            }
+
+            armMotor.setPower(gamepad2.right_stick_y);
+            elevatorMotor.setPower(ElevatorFunction.moveElevator(gamepad2.left_stick_y, elevatorIn, elevatorOut));
+
+            if (gamepad2.right_trigger > 0.5) servoBucket.setPower(-1);
+            if (gamepad2.left_trigger > 0.5) servoBucket.setPower(1);
+            else servoBucket.setPower(0);
 
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);
