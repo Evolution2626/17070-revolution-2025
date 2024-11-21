@@ -50,7 +50,7 @@ public class autoTemplate extends LinearOpMode {
         while (DrivetrainFunction.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()) != 0
                 && DrivetrainFunction.calculatePower(targetFR, frontRightMotor.getCurrentPosition()) != 0
                 && DrivetrainFunction.calculatePower(targetBL, backLeftMotor.getCurrentPosition()) != 0
-                && DrivetrainFunction.calculatePower(targetBR, backRightMotor.getCurrentPosition()) != 0) {
+                && DrivetrainFunction.calculatePower(targetBR, backRightMotor.getCurrentPosition()) != 0 && opModeIsActive()) {
             frontLeftMotor.setPower(DrivetrainFunction.calculatePower(targetFL, frontLeftMotor.getCurrentPosition()));
             frontRightMotor.setPower(DrivetrainFunction.calculatePower(targetFR, frontRightMotor.getCurrentPosition()));
             backLeftMotor.setPower(DrivetrainFunction.calculatePower(targetBL, backLeftMotor.getCurrentPosition()));

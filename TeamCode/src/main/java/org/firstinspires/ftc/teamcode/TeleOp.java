@@ -76,11 +76,11 @@ public class TeleOp extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            if(gamepad2.b) {
+            if(gamepad2.y) {
                 servoPinceR.setPower(-1);
                 servoPinceL.setPower(1);
             }
-            if(gamepad2.x) {
+            else if(gamepad2.a) {
                 servoPinceR.setPower(1);
                 servoPinceL.setPower(-1);
             }
@@ -89,8 +89,8 @@ public class TeleOp extends LinearOpMode {
                 servoPinceL.setPower(0);
             }
 
-            armMotor.setPower(gamepad2.right_stick_y);
-            elevatorMotor.setPower(ElevatorFunction.moveElevator(gamepad2.left_stick_y, elevatorIn, elevatorOut));
+            armMotor.setPower(gamepad2.left_stick_y);
+            elevatorMotor.setPower(ElevatorFunction.moveElevator(-gamepad2.right_stick_y, elevatorIn, elevatorOut));
 
             if (gamepad2.right_trigger > 0.5) servoBucket.setPower(-1);
             if (gamepad2.left_trigger > 0.5) servoBucket.setPower(1);

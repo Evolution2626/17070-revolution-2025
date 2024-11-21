@@ -17,22 +17,18 @@ class DrivetrainFunction {
         @JvmStatic
         fun calculatePower(targetPos: Double, currentPos: Double): Double {
 
-            return if ((targetPos - currentPos) > 50) {
-                if (abs(currentPos - targetPos) < 100) 0.25
-                else if (abs(currentPos - targetPos) < 500) 0.50
-                else if (abs(currentPos - targetPos) < 1000) 0.75
+            return if ((targetPos - currentPos) >= 700) {
+                if (abs(currentPos - targetPos) < 700) 0.2
+                else if (abs(currentPos - targetPos) < 1000) 0.40
+                else if (abs(currentPos - targetPos) < 1500) 0.6
                 else 1.0
-            } else if ((targetPos - currentPos) < -50) {
-                if (abs(currentPos - targetPos) < 100) -0.25
-                else if (abs(currentPos - targetPos) < 500) -0.50
-                else if (abs(currentPos - targetPos) < 1000) -0.75
+            } else if ((targetPos - currentPos) >= -700) {
+                if (abs(currentPos - targetPos) < 700) -0.25
+                else if (abs(currentPos - targetPos) < 1000) -0.4
+                else if (abs(currentPos - targetPos) < 1500) -0.6
                 else -1.0
             } else 0.0
         }
-        @JvmStatic
-        fun getIfOnLine(ColorSensor: ColorSensor): Boolean {
-            if ((ColorSensor.red() >= 75 && ColorSensor.blue() <= 25) || (ColorSensor.blue() >= 75 && ColorSensor.red() <= 25)) return true
-            else return false
-        }
+
     }
 }
