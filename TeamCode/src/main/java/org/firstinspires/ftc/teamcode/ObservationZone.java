@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
 @Autonomous
-public class autoTemplate extends LinearOpMode {
+public class ObservationZone extends LinearOpMode {
 
     DcMotor frontLeftMotor;
     DcMotor backLeftMotor;
