@@ -18,16 +18,16 @@ class DrivetrainFunction {
         fun calculatePower(targetPos: Double, currentPos: Double): Double {
 
             return if ((targetPos - currentPos) >= 5) {
-                if (abs(currentPos - targetPos) > 300) 0.6
+                if (abs(currentPos - targetPos) > 300) 0.5
                 else if (abs(currentPos - targetPos) > 100) 0.4
                 else if (abs(currentPos - targetPos) > 50) 0.3
                 else if (abs(currentPos - targetPos) > 5) 0.2
 
                 else 0.8
             } else if ((targetPos - currentPos) <= -5 ) {
-                if (abs(currentPos - targetPos) > 300) -0.6
-                else if (abs(currentPos - targetPos) > 100) -0.5
-                else if (abs(currentPos - targetPos) > 50) -0.2
+                if (abs(currentPos - targetPos) > 200) -0.5
+                else if (abs(currentPos - targetPos) > 100) -0.4
+                else if (abs(currentPos - targetPos) > 50) -0.3
                 else if (abs(currentPos - targetPos) >5) -0.2
 
                 else -0.8
