@@ -49,6 +49,8 @@ public class TeleOp extends LinearOpMode {
         elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         elevatorIn.setMode(DigitalChannel.Mode.INPUT);
         elevatorOut.setMode(DigitalChannel.Mode.INPUT);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
 
         waitForStart();
@@ -56,9 +58,9 @@ public class TeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = Math.pow(gamepad1.left_stick_y, 2);
-            double x = -Math.pow(gamepad1.left_stick_x, 2);
-            double rx = -Math.pow(gamepad1.right_stick_x, 2);
+            double y = gamepad1.left_stick_y;
+            double x = -gamepad1.left_stick_x;
+            double rx = -gamepad1.right_stick_x;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             double frontLeftPower = (y + x + rx) / denominator;
@@ -77,7 +79,7 @@ public class TeleOp extends LinearOpMode {
                 servoPinceL.setPower(0);
             }
 
-            armMotor.setPower(Math.pow(gamepad2.left_stick_y * 0.80, 2));
+            armMotor.setPower(-gamepad2.left_stick_y * 0.30);
             elevatorMotor.setPower(ElevatorFunction.moveElevator(-gamepad2.right_stick_y * 0.75, elevatorIn, elevatorOut));
 
             if (gamepad2.right_trigger > 0.5) servoBucket.setPower(-1);
