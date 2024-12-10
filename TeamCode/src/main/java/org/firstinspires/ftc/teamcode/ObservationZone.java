@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Disabled
+
 @Autonomous
-public class autoTemplate extends LinearOpMode {
+public class ObservationZone extends LinearOpMode {
 
     DcMotor frontLeftMotor;
     DcMotor backLeftMotor;
@@ -38,17 +38,12 @@ public class autoTemplate extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            double targetFL = DrivetrainFunction.calculateTicks(120.0);
-            double targetFR = DrivetrainFunction.calculateTicks(120.0);
-            double targetBL = DrivetrainFunction.calculateTicks(120.0);
-            double targetBR = DrivetrainFunction.calculateTicks(120.0);
+            double targetFL = DrivetrainFunction.calculateTicks(60.0);
+            double targetFR = DrivetrainFunction.calculateTicks(60.0);
+            double targetBL = DrivetrainFunction.calculateTicks(60.0);
+            double targetBR = DrivetrainFunction.calculateTicks(60.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
 
-            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-120.0);
-            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-120.0);
-            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-120.0);
-            targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(-120.0);
-            encoderDrive(targetFL, targetFR, targetBL, targetBR);
             sleep(100000);
 
         }
