@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 
 @Autonomous
-public class score1 extends LinearOpMode {
+public class score1_park extends LinearOpMode {
 
     DcMotor frontLeftMotor;
     DcMotor backLeftMotor;
@@ -70,7 +70,7 @@ public class score1 extends LinearOpMode {
             targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
             targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(35.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
-            sleep(500);
+            sleep(600);
             elevatorMotor.setPower(0);
             frontLeftMotor.setPower(0);
             frontRightMotor.setPower(0);
@@ -86,8 +86,33 @@ public class score1 extends LinearOpMode {
             servoBucket.setPower(0);
             sleep(400);
             elevatorMotor.setPower(0);
-            sleep(100000);
+            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(30.0);
+            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
+            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
+            targetBR =  backRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(300);
+            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-40.0);
+            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(40.0);
+            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-40.0);
+            targetBR =  backRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(40.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(300);
 
+
+            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-250.0);
+            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-250.0);
+            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-250.0);
+            targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(-250.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(500);
+            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-25.0);
+            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(25.0);
+            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(25.0);
+            targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(-25.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(500);
+            break;
         }
     }
 
