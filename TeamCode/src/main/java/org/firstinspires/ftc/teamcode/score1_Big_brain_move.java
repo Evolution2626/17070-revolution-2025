@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 
 @Autonomous
@@ -18,6 +20,8 @@ public class score1_Big_brain_move extends LinearOpMode {
     DcMotor elevatorMotor;
 
     CRServo servoBucket;
+    DigitalChannel elevatorIn;
+    DigitalChannel elevatorOut;
 
 
     @Override
@@ -30,8 +34,8 @@ public class score1_Big_brain_move extends LinearOpMode {
         servoBucket = hardwareMap.get(CRServo.class, "servoBucket");
 
 
-        DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
-        DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
+        elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
+        elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
 
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -47,6 +51,12 @@ public class score1_Big_brain_move extends LinearOpMode {
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         elevatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         waitForStart();
 

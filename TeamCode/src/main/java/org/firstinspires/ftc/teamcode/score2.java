@@ -248,4 +248,3 @@ public class score2 extends LinearOpMode {
 
 
 }
-
