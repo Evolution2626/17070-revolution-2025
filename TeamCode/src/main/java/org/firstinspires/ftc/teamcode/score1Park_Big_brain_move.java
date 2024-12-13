@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,9 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 
-@Disabled
 @Autonomous
-public class score1 extends LinearOpMode {
+public class score1Park_Big_brain_move extends LinearOpMode {
 
     DcMotor frontLeftMotor;
     DcMotor backLeftMotor;
@@ -58,21 +56,21 @@ public class score1 extends LinearOpMode {
             double targetBL = DrivetrainFunction.calculateTicks(-45.0);
             double targetBR = DrivetrainFunction.calculateTicks(-45.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
-
-            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
-            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(30.0);
-            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
-            targetBR =  backRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(30.0);
+            sleep(300);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(-30.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(30.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(-30.0);
+            targetBR =  targetBR + DrivetrainFunction.calculateTicks(30.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
             sleep(300);
             elevatorMotor.setPower(ElevatorFunction.moveElevator(0.75, elevatorIn, elevatorOut));
 
-            targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(35.0);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(35.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(35.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(35.0);
+            targetBR =  targetBR +DrivetrainFunction.calculateTicks(35.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
-            sleep(500);
+            sleep(600);
             elevatorMotor.setPower(0);
             frontLeftMotor.setPower(0);
             frontRightMotor.setPower(0);
@@ -88,8 +86,33 @@ public class score1 extends LinearOpMode {
             servoBucket.setPower(0);
             sleep(400);
             elevatorMotor.setPower(0);
-            sleep(100000);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(30.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(-30.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(-30.0);
+            targetBR =  targetBR + DrivetrainFunction.calculateTicks(-30.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(300);
+            targetFL = targetFL  + DrivetrainFunction.calculateTicks(-40.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(40.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(-40.0);
+            targetBR =  targetBR + DrivetrainFunction.calculateTicks(40.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(300);
 
+
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(-250.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(-250.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(-250.0);
+            targetBR =  targetBR +DrivetrainFunction.calculateTicks(-250.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(500);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(-25.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(25.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(25.0);
+            targetBR =  targetBR +DrivetrainFunction.calculateTicks(-25.0);
+            encoderDrive(targetFL, targetFR, targetBL, targetBR);
+            sleep(500);
+            break;
         }
     }
 

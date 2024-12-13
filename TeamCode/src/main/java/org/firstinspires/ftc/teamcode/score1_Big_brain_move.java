@@ -66,22 +66,22 @@ public class score1_Big_brain_move extends LinearOpMode {
             double targetBL = DrivetrainFunction.calculateTicks(-45.0);
             double targetBR = DrivetrainFunction.calculateTicks(-45.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
-
-            targetFL = targetFL + DrivetrainFunction.calculateTicks(-30.0);
-            targetFR = targetFR + DrivetrainFunction.calculateTicks(30.0);
-            targetBL = targetBL + DrivetrainFunction.calculateTicks(-30.0);
-            targetBR =  targetBR + DrivetrainFunction.calculateTicks(30.0);
+            sleep(300);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(-35.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(35.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(-35.0);
+            targetBR =  targetBR + DrivetrainFunction.calculateTicks(35.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
             sleep(300);
             elevatorMotor.setPower(ElevatorFunction.moveElevator(0.75, elevatorIn, elevatorOut));
 
-            targetFL = targetFL + DrivetrainFunction.calculateTicks(35.0);
-            targetFR = targetFR + DrivetrainFunction.calculateTicks(35.0);
-            targetBL = targetBL + DrivetrainFunction.calculateTicks(35.0);
-            targetBR =  targetBR +DrivetrainFunction.calculateTicks(35.0);
+            targetFL = targetFL + DrivetrainFunction.calculateTicks(60.0);
+            targetFR = targetFR + DrivetrainFunction.calculateTicks(60.0);
+            targetBL = targetBL + DrivetrainFunction.calculateTicks(60.0);
+            targetBR =  targetBR + DrivetrainFunction.calculateTicks(60.0);
             encoderDrive(targetFL, targetFR, targetBL, targetBR);
-            sleep(500);
             elevatorMotor.setPower(0);
+            sleep(500);
             frontLeftMotor.setPower(0);
             frontRightMotor.setPower(0);
             backLeftMotor.setPower(0);
@@ -92,7 +92,7 @@ public class score1_Big_brain_move extends LinearOpMode {
             servoBucket.setPower(1);
             sleep(500);
             elevatorMotor.setPower(ElevatorFunction.moveElevator(-0.75, elevatorIn, elevatorOut));
-            sleep(500);
+            sleep(700);
             servoBucket.setPower(0);
             sleep(400);
             elevatorMotor.setPower(0);
