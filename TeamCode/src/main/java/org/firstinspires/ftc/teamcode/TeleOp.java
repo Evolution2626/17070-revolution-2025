@@ -34,11 +34,9 @@ public class TeleOp extends LinearOpMode {
         DcMotor armMotor = hardwareMap.dcMotor.get("arm");
         DcMotor elevatorMotor = hardwareMap.dcMotor.get("elevator");
 
-
         DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
         DigitalChannel armLimit = hardwareMap.digitalChannel.get("armLimit");
-
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -58,8 +56,6 @@ public class TeleOp extends LinearOpMode {
         elevatorIn.setMode(DigitalChannel.Mode.INPUT);
         elevatorOut.setMode(DigitalChannel.Mode.INPUT);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
 
         waitForStart();
 
@@ -84,7 +80,6 @@ public class TeleOp extends LinearOpMode {
                     servoPinceR.setPower(1);
                     servoPinceL.setPower(-1);
                     time = LocalTime.now();
-
                 }
                 else {
                     servoPinceR.setPower(1);
@@ -106,6 +101,7 @@ public class TeleOp extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+
             if (time != null && time.plusSeconds(3).isBefore(LocalTime.now())) {
                 servoPinceR.setPower(0);
                 servoPinceL.setPower(0);
