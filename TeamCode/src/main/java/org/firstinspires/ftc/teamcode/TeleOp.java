@@ -1,10 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+
+import java.time.LocalTime;
 
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
@@ -13,9 +19,10 @@ public class TeleOp extends LinearOpMode {
     CRServo servoPinceL;
     CRServo servoBucket;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void runOpMode() throws InterruptedException {
-
+        LocalTime time = null;
         servoPinceR = hardwareMap.get(CRServo.class, "servoPinceR");
         servoPinceL = hardwareMap.get(CRServo.class, "servoPinceL");
         servoBucket = hardwareMap.get(CRServo.class, "servoBucket");
@@ -30,6 +37,7 @@ public class TeleOp extends LinearOpMode {
 
         DigitalChannel elevatorIn = hardwareMap.digitalChannel.get("elevatorIn");
         DigitalChannel elevatorOut = hardwareMap.digitalChannel.get("elevatorOut");
+        DigitalChannel armLimit = hardwareMap.digitalChannel.get("armLimit");
 
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -59,7 +67,7 @@ public class TeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             double y = gamepad1.left_stick_y;
-            double x = -gamepad1.left_stick_x;
+            double x = -gamepad1.left_stick_x* 1.1;
             double rx = -gamepad1.right_stick_x*0.8;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
@@ -72,8 +80,16 @@ public class TeleOp extends LinearOpMode {
                 servoPinceR.setPower(-1);
                 servoPinceL.setPower(1);
             } else if (gamepad2.a) {
-                servoPinceR.setPower(1);
-                servoPinceL.setPower(-1);
+                if(armLimit.getState()) {
+                    servoPinceR.setPower(1);
+                    servoPinceL.setPower(-1);
+                    time = LocalTime.now();
+
+                }
+                else {
+                    servoPinceR.setPower(1);
+                    servoPinceL.setPower(-1);
+                }
             } else {
                 servoPinceR.setPower(0);
                 servoPinceL.setPower(0);
@@ -90,6 +106,11 @@ public class TeleOp extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+            if (time != null && time.plusSeconds(3).isBefore(LocalTime.now())) {
+                servoPinceR.setPower(0);
+                servoPinceL.setPower(0);
+                time = null;
+            }
         }
     }
 
