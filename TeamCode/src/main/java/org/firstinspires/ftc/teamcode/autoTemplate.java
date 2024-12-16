@@ -39,7 +39,7 @@ public class autoTemplate extends LinearOpMode {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        DrivetrainFunction.calculateTicks(120.0);
         waitForStart();
 
         while (opModeIsActive()) {
