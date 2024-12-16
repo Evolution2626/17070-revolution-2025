@@ -10,7 +10,7 @@ class ElevatorFunction {
             elevatorIn: DigitalChannel,
             elevatorOut: DigitalChannel
         ): Double {
-            return if (elevatorOut.state && power <= 0) power
+            return if (elevatorOut.state && power <= 0) power*0.75
             else if (elevatorIn.state && power >= 0) power
             else 0.0
         }
