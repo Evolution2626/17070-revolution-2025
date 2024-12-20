@@ -66,9 +66,9 @@ public class TeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y;
-            double x = gamepad1.left_stick_x * 1.1;
-            double rx = gamepad1.right_stick_x * 0.8;
+            double y = -(gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y) * Math.pow(Math.abs(gamepad1.left_stick_y), 2));
+            double x = (gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x) * Math.pow(Math.abs(gamepad1.left_stick_x), 2)) * 1.1;
+            double rx = (gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * Math.pow(Math.abs(gamepad1.right_stick_x), 2)) * 0.8;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             double frontLeftPower = (y + x + rx) / denominator;
@@ -80,7 +80,7 @@ public class TeleOp extends LinearOpMode {
                 servoPinceR.setPower(-1);
                 servoPinceL.setPower(1);
             } else if (gamepad2.a) {
-                if(armLimit.getState()) {
+                if (!armLimit.getState()) {
                     servoPinceR.setPower(1);
                     servoPinceL.setPower(-1);
                     time = runtime.time();
@@ -107,7 +107,7 @@ public class TeleOp extends LinearOpMode {
             backRightMotor.setPower(backRightPower);
 
             if (time != 0.0) {
-                if (time + 3.0 > runtime.time()) {
+                if (time + 1.5 <= runtime.time()) {
                     servoPinceR.setPower(0);
                     servoPinceL.setPower(0);
                     time = 0.0;
