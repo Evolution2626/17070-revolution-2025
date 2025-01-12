@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,17 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends LinearOpMode {
     CRServo servoPinceR;
     CRServo servoPinceL;
     CRServo servoBucket;
     private ElapsedTime runtime = new ElapsedTime();
-    double time = 0;
+    double time = 0.0;
 
     @Override
     public void runOpMode() throws InterruptedException {
