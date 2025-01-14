@@ -61,26 +61,10 @@ public class TheNewAuto extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-           /* double targetFL = DrivetrainFunction.calculateTicks(-45.0);
-            double targetFR = DrivetrainFunction.calculateTicks(-45.0);
-            double targetBL = DrivetrainFunction.calculateTicks(-45.0);
-            double targetBR = DrivetrainFunction.calculateTicks(-45.0);
-            encoderDrive(targetFL, targetFR, targetBL, targetBR);*/
+
             encoderDrive(DRIVE_SPEED, 45, 45, 45, 45, 15.0);
-           /* targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
-            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(30.0);
-            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(-30.0);
-            targetBR =  backRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(30.0);
-            encoderDrive(targetFL, targetFR, targetBL, targetBR);
-            sleep(300);*/
             encoderDrive(TURN_SPEED, 30, -30, -30, 30, 15.0);
             elevatorMotor.setPower(ElevatorFunction.moveElevator(0.75, elevatorIn, elevatorOut));
-
-           /* targetFL = frontLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetFR = frontRightMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetBL = backLeftMotor.getCurrentPosition() + DrivetrainFunction.calculateTicks(35.0);
-            targetBR =  backRightMotor.getCurrentPosition() +DrivetrainFunction.calculateTicks(35.0);
-            encoderDrive(targetFL, targetFR, targetBL, targetBR);*/
             encoderDrive(DRIVE_SPEED, 35, 35, 35, 35, 15.0);
             sleep(500);
             elevatorMotor.setPower(0);
