@@ -28,7 +28,7 @@ public class FinalAuto extends LinearOpMode {
     CRServo servoPinceR;
     CRServo servoPinceL;
 
-    private ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
     double timeBucket = 0.0;
     double timeArm = 0.0;
     double timeClaw = 0.0;
@@ -119,7 +119,7 @@ public class FinalAuto extends LinearOpMode {
                     stateMachine = StateMachine.DRIVE_TO_TARGET_1;
                     break;
                 case DRIVE_TO_TARGET_1:
-                    if (nav.driveTo(odo.getPosition(), TARGET_1, 0.6, 0.5)) {
+                    if (nav.driveTo(odo.getPosition(), TARGET_1, 0.5, 0)) {
                         telemetry.addLine("at position #1!");
                         stateMachine = StateMachine.DRIVE_TO_TARGET_2;
                         elevatorPower = 0.75;
@@ -130,7 +130,7 @@ public class FinalAuto extends LinearOpMode {
                     break;
                 case DRIVE_TO_TARGET_2:
                     //drive to the second target
-                    if (nav.driveTo(odo.getPosition(), TARGET_2, 0.6, 0.5)) {
+                    if (nav.driveTo(odo.getPosition(), TARGET_2, 0.5, 0.5)) {
                         telemetry.addLine("at position #2!");
 
                         servoBucket.setPower(-1.0);
