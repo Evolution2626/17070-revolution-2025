@@ -58,9 +58,12 @@ public class TeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -(gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y) * Math.pow(Math.abs(gamepad1.left_stick_y), 2));
+            /*double y = -(gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y) * Math.pow(Math.abs(gamepad1.left_stick_y), 2));
             double x = (gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x) * Math.pow(Math.abs(gamepad1.left_stick_x), 2)) * 1.1;
-            double rx = (gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * Math.pow(Math.abs(gamepad1.right_stick_x), 2)) * 0.8;
+            double rx = (gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * Math.pow(Math.abs(gamepad1.right_stick_x), 2)) * 0.8;*/
+            double y = -gamepad1.left_stick_y;
+            double x = gamepad1.left_stick_x * 1.1;
+            double rx = gamepad1.right_stick_x * 0.8;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             double frontLeftPower = (y + x + rx) / denominator;
