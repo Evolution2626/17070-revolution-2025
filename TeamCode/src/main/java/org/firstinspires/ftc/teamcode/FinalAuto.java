@@ -193,18 +193,26 @@ public class FinalAuto extends LinearOpMode {
                     armMotor.setPower(0);
                     timeArm = 0.0;
                     if (armOut && !clawOut) {
-                        armOut = false;
-                        timeArm = runtime.time();
+                        timeClaw = runtime.time();
                         clawOut = true;
                         servoPinceR.setPower(-1);
+                        sleep(5);
                         servoPinceL.setPower(1);
-
-
+                        sleep(5);
                     }
+                    if (armOut && clawOut) {
+                        timeClaw = runtime.time();
+                        clawOut = false;
+                        servoPinceR.setPower(1);
+                        sleep(5);
+                        servoPinceL.setPower(-1);
+                        sleep(5);
+                    }
+
                 }
             }
             if (timeClaw != 0.0) {
-                if (timeClaw + 1.0 <= runtime.time()) {
+                if (timeClaw + 2.0 <= runtime.time()) {
                     servoPinceR.setPower(0);
                     servoPinceL.setPower(0);
                     timeClaw = 0.0;
@@ -215,11 +223,12 @@ public class FinalAuto extends LinearOpMode {
                         servoPinceL.setPower(-1);
                         readyToGo = true;
 
-                    }
-                    if (clawOut && armOut) {
+                    } else if (!armOut && !clawOut) {
+                        readyToGo = true;
+                    } else if (clawOut && armOut) {
                         armOut = false;
                         timeArm = runtime.time();
-                        armMotor.setPower(-1);
+                        armMotor.setPower(1);
                     }
                 }
             }
