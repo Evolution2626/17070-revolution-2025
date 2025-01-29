@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 
 import java.util.Locale;
 
-@Autonomous(name = "it's the final auto tututududu")
+@Autonomous(name = "ken block")
 //@Disabled
 
 public class FinalAuto extends LinearOpMode {
