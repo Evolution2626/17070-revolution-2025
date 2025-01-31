@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5afca5b3-923d-46d7-8e60-4c9a91f61658" name="Changes" comment="it work!!!" />
+    <list default="true" id="5afca5b3-923d-46d7-8e60-4c9a91f61658" name="Changes" comment="remove thing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TeleOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TeleOp.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -420,7 +423,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738158376030</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="remove thing">
+      <option name="closed" value="true" />
+      <created>1738162200243</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1738162200243</updated>
+    </task>
+    <task id="LOCAL-00031" summary="remove thing">
+      <option name="closed" value="true" />
+      <created>1738162263231</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1738162263231</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,7 +471,8 @@
     <MESSAGE value="new modification to auto runtime" />
     <MESSAGE value="disable useless auto" />
     <MESSAGE value="it work!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="it work!!!" />
+    <MESSAGE value="remove thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove thing" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
