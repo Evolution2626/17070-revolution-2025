@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,17 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends LinearOpMode {
     CRServo servoPinceR;
     CRServo servoPinceL;
     CRServo servoBucket;
     private ElapsedTime runtime = new ElapsedTime();
-    double time = 0;
+    double time = 0.0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -66,9 +58,10 @@ public class TeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -(gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y) * Math.pow(Math.abs(gamepad1.left_stick_y), 2));
-            double x = (gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x) * Math.pow(Math.abs(gamepad1.left_stick_x), 2)) * 1.1;
-            double rx = (gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * Math.pow(Math.abs(gamepad1.right_stick_x), 2)) * 0.8;
+
+            double y = -gamepad1.left_stick_y;
+            double x = gamepad1.left_stick_x * 1.1;
+            double rx = gamepad1.right_stick_x;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             double frontLeftPower = (y + x + rx) / denominator;
