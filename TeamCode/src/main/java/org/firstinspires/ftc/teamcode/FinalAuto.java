@@ -57,16 +57,16 @@ public class FinalAuto extends LinearOpMode {
     }
 
     static final Pose2D TARGET_1 = new Pose2D(DistanceUnit.MM, 200, 0, AngleUnit.DEGREES, -20);
-    static final Pose2D TARGET_2 = new Pose2D(DistanceUnit.MM, 120, 850, AngleUnit.DEGREES, -45);
+    static final Pose2D TARGET_2 = new Pose2D(DistanceUnit.MM, 100, 840, AngleUnit.DEGREES, -45);
     static final Pose2D TARGET_3 = new Pose2D(DistanceUnit.MM, 400, 620, AngleUnit.DEGREES, 0);
-    static final Pose2D TARGET_4 = new Pose2D(DistanceUnit.MM, 120, 850, AngleUnit.DEGREES, -45);
+    static final Pose2D TARGET_4 = new Pose2D(DistanceUnit.MM, 100, 840, AngleUnit.DEGREES, -45);
     static final Pose2D TARGET_5 = new Pose2D(DistanceUnit.MM, 400, 880, AngleUnit.DEGREES, 0);
-    static final Pose2D TARGET_6 = new Pose2D(DistanceUnit.MM, 120, 850, AngleUnit.DEGREES, -45);
+    static final Pose2D TARGET_6 = new Pose2D(DistanceUnit.MM, 100, 840, AngleUnit.DEGREES, -45);
     static final Pose2D TARGET_7 = new Pose2D(DistanceUnit.MM, 890, 500, AngleUnit.DEGREES, 90);
-    static final Pose2D TARGET_8 = new Pose2D(DistanceUnit.MM, 120, 850, AngleUnit.DEGREES, -45);
+    static final Pose2D TARGET_8 = new Pose2D(DistanceUnit.MM, 100, 840, AngleUnit.DEGREES, -45);
     static final Pose2D TARGET_3_1 = new Pose2D(DistanceUnit.MM, 480, 620, AngleUnit.DEGREES, 0);
     static final Pose2D TARGET_5_1 = new Pose2D(DistanceUnit.MM, 480, 880, AngleUnit.DEGREES, 0);
-    static final Pose2D TARGET_7_1 = new Pose2D(DistanceUnit.MM, 890, 620, AngleUnit.DEGREES, 90);
+    static final Pose2D TARGET_7_1 = new Pose2D(DistanceUnit.MM, 890, 680, AngleUnit.DEGREES, 90);
 
 
     @Override
@@ -132,7 +132,7 @@ public class FinalAuto extends LinearOpMode {
                     stateMachine = StateMachine.DRIVE_TO_TARGET_1;
                     break;
                 case DRIVE_TO_TARGET_1:
-                    if (nav.driveTo(odo.getPosition(), TARGET_1, 0.5, 0)) {
+                    if (nav.driveTo(odo.getPosition(), TARGET_1, 1.0, 0)) {
                         telemetry.addLine("at position #1!");
                         stateMachine = StateMachine.DRIVE_TO_TARGET_2;
                         elevatorPower = 0.75;
@@ -143,7 +143,7 @@ public class FinalAuto extends LinearOpMode {
                     break;
                 case DRIVE_TO_TARGET_2:
                     //drive to the second target
-                    if (nav.driveTo(odo.getPosition(), TARGET_2, 0.5, 0.5)) {
+                    if (nav.driveTo(odo.getPosition(), TARGET_2, 0.7, 0.5)) {
                         telemetry.addLine("at position #2!");
 
                         servoBucket.setPower(-1.0);
@@ -244,7 +244,7 @@ public class FinalAuto extends LinearOpMode {
 
                     break;
                 case Drive_TO_TARGET_7_1:
-                    if (nav.driveTo(odo.getPosition(), TARGET_7_1, 0.6, 0.0)) {
+                    if (nav.driveTo(odo.getPosition(), TARGET_7_1, 0.5, 0.0)) {
                         telemetry.addLine("at position #7.1");
                         stateMachine = StateMachine.AT_TARGET;
                         readyToGo = false;
